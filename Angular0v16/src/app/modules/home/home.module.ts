@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
+import { HomeRoutingModule } from './components/home/home-routing.module';
+import { NavbarComponent, TableComponent } from 'src/app/components';
 
 
 
@@ -9,7 +11,10 @@ import { HomeComponent } from './components/home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HomeRoutingModule,
+    NavbarComponent,
+    TableComponent
   ]
 })
-export class HombeModule { }
+export class HomeModule { }
