@@ -1,0 +1,43 @@
+<!--Directivas de Atributos-->
+<div [ngStyle] = "{color: condition ? 'blue' : 'red'}" >Hola</div>
+<!--Cambia nombre de la clase-->
+<div [ngClass]="condition ? 'green' : 'blue'">Class</div>
+<!--Evento-->
+<button (click)="handleclick()"> Change color</button>
+<!--D. Estructurales-->
+
+<div *ngIf="condition; else elseBlock"> 
+  <h1>Content to render when condition is true.</h1>
+</div>
+<ng-template #elseBlock><h1>Content to render when condition is false.</h1></ng-template>
+
+<div *ngFor="let item of arreglo">{{item}}</div>
+<!--Probar Usando div en vez de ng-container para entender su uso-->
+<ul>
+  <ng-container *ngFor="let item of arreglo">
+    <li>{{item}}</li>
+  </ng-container>
+</ul>
+
+<ng-container>Dom</ng-container>
+
+<!--Probando ng-template outlet-->
+<h1>Probando el ng-templateOutlet</h1>
+<ng-container [ngSwitch]="selectedOptions">
+  <h1 *ngSwitchCase="'uno'">Switch uno</h1>
+  <h2 *ngSwitchCase="'dos' ">Switch Dos</h2>
+  <ng-container *ngSwitchCase="'tres'" [ngTemplateOutlet]="TemplateNumberThird">
+  </ng-container>
+</ng-container>
+
+
+<ng-template #TemplateNumberThird>
+  <ul>
+    <ng-container *ngFor="let i of options">
+      <li>List {{i}}</li>
+    </ng-container>
+    </ul>
+</ng-template>
+
+<router-outlet/>
+

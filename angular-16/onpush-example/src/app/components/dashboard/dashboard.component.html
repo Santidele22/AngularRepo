@@ -1,0 +1,8 @@
+<h1>Padre</h1>
+<h2>Parent: {{text}}</h2>
+<button (click)="handleClick()">Cambiar texto desde el padre</button>
+<!--
+Two way data binding
+[(etc)]
+--> 
+<app-dashboard-child [(text)]="text"/>
