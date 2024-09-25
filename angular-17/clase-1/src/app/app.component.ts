@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'clase-1';
 
   constructor() {
+    //afterNextRender is ideal for performing one-time initializations, such as integrating third-party libraries or utilizing browser-specific APIs:
     afterNextRender(() => {
       console.log(window.location.pathname);
     });
