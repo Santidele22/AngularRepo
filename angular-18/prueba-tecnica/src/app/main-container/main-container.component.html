@@ -1,0 +1,10 @@
+<div class="link-container">
+  <a routerLink="/add-edit-characters" class="add-edit-link">Add Character</a>
+</div>
+<div class="main-container">
+  @defer () { @for (char of store.characters(); track char.id) {
+  <app-card-components [character]="char" />
+  } }@placeholder {
+  <div class="placeholder">Loading</div>
+  }
+</div>

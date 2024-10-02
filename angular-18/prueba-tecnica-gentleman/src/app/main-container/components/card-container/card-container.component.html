@@ -1,0 +1,21 @@
+@let characterLocal = character(); @if(characterLocal){
+<article class="character-card">
+  <img
+    class="character-image"
+    [ngSrc]="characterLocal.image"
+    [alt]="characterLocal.name"
+    width="200"
+    height="200"
+  />
+
+  <p>Character: {{ characterLocal.name }}</p>
+  <div class="button-container">
+    <button (click)="removeCharacter(characterLocal.id)">
+      Deleted character
+    </button>
+  </div>
+  <a [routerLink]="['/add-edit-character', characterLocal.id]"
+    >Edit Character</a
+  >
+</article>
+}

@@ -1,0 +1,17 @@
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 1rem;
+  place-items: center;
+}
+.link-container {
+  margin: 2rem;
+}
+.add-edit-link {
+  padding: 1rem;
+  text-decoration: none;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  color: #fff;
+}

@@ -1,0 +1,11 @@
+<a routerLink="'add-edit-character">Edit Character</a>
+<div class="character-grid">
+  @defer (when store.characters().length) { @for (character of
+  store.characters(); track character.id) { @defer (on viewport) {
+  <app-card-container [character]="character" />
+  }@placeholder(minimum 500) {
+  <div class="placeholder">
+    <h3>Loading...</h3>
+  </div>
+  } } }
+</div>

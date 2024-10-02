@@ -1,11 +1,18 @@
 import { inject, InjectionToken } from '@angular/core';
-import { CharacterModels } from '@app/models/character-models';
+import { CharacterModels as Character } from '@app/models/character.models';
 import { CharacterService } from '@app/services';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { withEntities } from '@ngrx/signals/entities';
 import { lastValueFrom } from 'rxjs';
 
 type StoreState = {
-  characters: CharacterModels[];
+  characters: Character[];
 };
 
 const initialState: StoreState = {
@@ -19,11 +26,13 @@ const STORE_STATE = new InjectionToken<StoreState>('GlobalStore', {
 export const GlobalStore = signalStore(
   { providedIn: 'root' },
   withState(() => inject(STORE_STATE)),
+  withEntities<Character>(),
   withMethods((store, characterService = inject(CharacterService)) => ({
     getCharacter(id: number) {
       return store.characters().find((char) => char.id === id);
     },
-    async addCharacter(character: Omit<CharacterModels, 'id'>) {
+
+    async addCharacter(character: Omit<Character, 'id'>) {
       try {
         await lastValueFrom(characterService.addCharacter(character));
 
@@ -33,47 +42,39 @@ export const GlobalStore = signalStore(
             { id: new Date().getTime(), ...character },
           ],
         }));
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        } else {
-          throw new Error(String(error));
-        }
-      }
+      } catch (error) {}
     },
+
     async removeCharacter(id: number) {
       try {
         await lastValueFrom(characterService.removeCharacter(id));
 
         patchState(store, ({ characters }) => ({
-          characters: [...characters.filter((char) => char.id !== id)],
+          characters: characters.filter((char) => char.id !== id),
         }));
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        } else {
-          throw new Error(String(error));
-        }
-      }
+      } catch (error) {}
     },
-    async updateCharacter(character: CharacterModels, id: number) {
+
+    async updateCharacter(character: Character) {
       try {
-        await lastValueFrom(characterService.updateCharacter(character, id));
+        await lastValueFrom(characterService.updateCharacter(character));
 
         patchState(store, ({ characters }) => ({
-          characters: [
-            ...characters.map((char) =>
-              char.id === character.id ? { ...char, ...character } : char
-            ),
-          ],
+          characters: characters.map((char) =>
+            char.id === character.id ? { ...char, ...character } : char
+          ),
+          isLoading: false,
         }));
-      } catch (error) {
-        if (error instanceof Error) {
-          throw new Error(error.message);
-        } else {
-          throw new Error(String(error));
-        }
-      }
+      } catch (error) {}
     },
-  }))
+  })),
+  withHooks({
+    async onInit(store, characterService = inject(CharacterService)) {
+      const characters = await lastValueFrom(
+        characterService.getAllCharacters()
+      );
+
+      patchState(store, { characters });
+    },
+  })
 );

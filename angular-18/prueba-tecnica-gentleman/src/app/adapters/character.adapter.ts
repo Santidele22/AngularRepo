@@ -1,4 +1,4 @@
-import { CharacterInfo, CharacterModels } from '@app/models/character-models';
+import { CharacterInfo, CharacterModels } from '@app/models/character.models';
 
 export const CharacterAdapter = (
   characterInfo: CharacterInfo

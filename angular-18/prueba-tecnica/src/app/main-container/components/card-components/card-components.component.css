@@ -1,0 +1,56 @@
+.card-container {
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid #fff;
+  max-width: 300px;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  gap: 1rem;
+  background: green;
+}
+.character-image {
+  width: 100%;
+  height: 100%;
+}
+.character-info {
+  font-size: 1.2rem;
+}
+
+.btn-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5rem;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+button {
+  padding: 1rem;
+  border-style: none;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  color: green;
+  font-size: 1rem;
+  transition: 1s all;
+}
+a {
+  text-decoration: none;
+  color: green;
+  background-color: #fff;
+  padding: 1rem;
+  border-style: none;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  transition: 1s all;
+}
+button:hover {
+  background-color: rgba(8, 22, 8, 0.726);
+
+  color: #fff;
+}
+a:hover {
+  background-color: rgba(8, 22, 8, 0.726);
+
+  color: #fff;
+}

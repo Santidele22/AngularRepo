@@ -6,5 +6,13 @@
 }
 body {
   background-color: #010101;
-  color: #fff;
+}
+li {
+  display: inline-block;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
 }

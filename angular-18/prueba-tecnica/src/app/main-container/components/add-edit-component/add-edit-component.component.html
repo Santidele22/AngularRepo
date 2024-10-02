@@ -1,0 +1,23 @@
+<a routerLink="/characters" style="color: #fff">Home</a>
+<div class="form-container">
+  <form [formGroup]="characterForm()" (ngSubmit)="onSubmit()">
+    <app-input-custom
+      [control]="$any(characterForm().get('name'))"
+      label="Name"
+      placeHolder="Enter your name"
+      errorMessage="Invalid name"
+      type="text"
+    />
+    <app-input-custom
+      [control]="$any(characterForm().get('image'))"
+      label="Image"
+      placeHolder="Enter your Image"
+      errorMessage="Invalid Image"
+      type="text"
+    />
+
+    <button>
+      {{ characterToEdit().name ? "Edit Character" : "Add Character" }}
+    </button>
+  </form>
+</div>
