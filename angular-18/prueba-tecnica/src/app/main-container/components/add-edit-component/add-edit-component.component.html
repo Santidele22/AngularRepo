@@ -15,6 +15,13 @@
       errorMessage="Invalid Image"
       type="text"
     />
+    <app-input-custom
+      [control]="$any(characterForm().get('gender'))"
+      label="gender"
+      placeHolder="Enter your gender: Male, Female, Unknown, Genderless"
+      errorMessage="Invalid Image"
+      type="text"
+    />
 
     <button>
       {{ characterToEdit().name ? "Edit Character" : "Add Character" }}

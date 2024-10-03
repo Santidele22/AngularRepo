@@ -15,11 +15,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { emptyCharacter } from '@app/models';
+import { emptyCharacter, Gender } from '@app/models';
 
 interface CharacterForm {
   name: FormControl<string>;
   image: FormControl<string>;
+  gender: FormControl<Gender>;
 }
 
 @Component({
@@ -46,6 +47,10 @@ export class AddEditComponent {
           validators: [Validators.required],
         }),
         image: new FormControl(this.characterToEdit().image, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        gender: new FormControl(this.characterToEdit().gender, {
           nonNullable: true,
           validators: [Validators.required],
         }),

@@ -1,11 +1,11 @@
 .main-container {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   place-items: center;
 }
 .link-container {
-  margin: 2rem;
+  margin: 3rem;
 }
 .add-edit-link {
   padding: 1rem;
@@ -14,4 +14,15 @@
   border-radius: 0.5rem;
   font-size: 1.2rem;
   color: #fff;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
 }

@@ -1,0 +1,19 @@
+.form-group {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+}
+.form-group label {
+  font-size: 1.2rem;
+}
+.form-group input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.2rem;
+}
+.form-group .error {
+  font-size: 1rem;
+  color: red;
+}
